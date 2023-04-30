@@ -24,8 +24,8 @@ def home():
     graphJSON_GDP = plc_uzb.gdp_graph()
     return render_template('index.html', image_path = "images/background_.jpg",
                             graphJSON_population = graphJSON_population, 
-                           graphJSON_GDP = graphJSON_GDP, reg_colors = reg_colors,
-                           min_val = floor(min_val), max_val=ceil(max_val))
+                            graphJSON_GDP = graphJSON_GDP, reg_colors = reg_colors,
+                            min_val = floor(min_val), max_val=ceil(max_val))
 
 # Define a view function that handles requests to URLs with a `region` parameter
 @app.route("/<region>")
@@ -54,7 +54,12 @@ def region(region):
     except:
         text_r_arr = 'нет текста'
 
-    return render_template('regions.html',population = population, gdp = gdp, region = region, by_id_region = by_id_region, image_path = "images/background_"+region+".jpg", text_arr = text_r_arr,graphJSON_population = graphJSON_population, graphJSON_GDP = graphJSON_GDP, reg_colors = reg_colors)
+    return render_template('regions.html',population = population, gdp = gdp, 
+                           region = region, by_id_region = by_id_region, 
+                           image_path = "images/background_"+region+".jpg", 
+                           text_arr = text_r_arr,graphJSON_population = graphJSON_population, 
+                           graphJSON_GDP = graphJSON_GDP, reg_colors = reg_colors,
+                           min_val = floor(min_val), max_val=ceil(max_val))
 
 @app.route("/regions")
 def regions_show():
