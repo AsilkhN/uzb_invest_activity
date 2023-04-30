@@ -1,0 +1,39 @@
+{% extends "template_with_map.html" %}
+
+{% block top_text %}
+    {% for r in by_id_region %}
+        {{ r.region_name }}
+    {% endfor %}
+{% endblock %}
+
+{% block content_text %}
+    {% for text in text_arr %}
+        <p>{{ text }}</p>
+    {% endfor %}
+{% endblock %}
+
+{% block data %}
+<div>
+{% for r in by_id_region %}
+    Столица: {{ r.capital_city }}
+{% endfor %}
+</div>
+<div>
+    Насление: {{ population }} тысяч чел
+</div>
+<div>
+    ВРП: {{ gdp }} млрд. сум
+</div>
+{% endblock %}
+
+{% block plots %}
+<h2>ВРП, млрд.сум.</h2>
+<div id = "plot_gdp"></div>
+{% endblock %}
+
+{% block plots_script %}
+var graphJSON_GDP = {{ graphJSON_GDP|safe }}
+
+Plotly.newPlot('plot_gdp', graphJSON_GDP, {});
+{% endblock %}
+
