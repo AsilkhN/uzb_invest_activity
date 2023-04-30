@@ -7,7 +7,7 @@ import sqlite3
 import os
 from math import ceil, floor
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # Define a function that creates a connection to the SQLite database
 def get_db_connection():
@@ -47,7 +47,7 @@ def region(region):
     conn.close()
     #Getting text about the region
     try:
-        text = open("\\static\\texts\\"+region+".txt", "r", encoding="utf8")
+        text = open(app.static_folder+"/texts/"+region+".txt", "r", encoding="utf8")
         text_r = text.read()
         text.close()
         text_r_arr = text_r.split('\n')
