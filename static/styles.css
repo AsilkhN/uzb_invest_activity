@@ -155,7 +155,7 @@ nav a:hover {
 }
 
 .gradient {
-  background: linear-gradient(to bottom, white, green);
+  background: linear-gradient(to bottom, white,#00441b);
   height: 200px;
   width: 50px;
   margin-top: 10%;
