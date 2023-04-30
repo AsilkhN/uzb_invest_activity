@@ -47,7 +47,7 @@ def region(region):
     conn.close()
     #Getting text about the region
     try:
-        text = open("static\\texts\\"+region+".txt", "r", encoding="utf8")
+        text = open("\\static\\texts\\"+region+".txt", "r", encoding="utf8")
         text_r = text.read()
         text.close()
         text_r_arr = text_r.split('\n')
