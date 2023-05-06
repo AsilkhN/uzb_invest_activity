@@ -6,11 +6,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
   {% endblock %}
 </head>
 <body>
 
-<header class="header" id="myHeader">
+<header id="myHeader">
   <div class="logo-container">
     <a href="/">
       <!--<img src="your-logo.png" alt="INVEST IN UZBEKISTAN">-->
@@ -27,7 +28,7 @@
   </nav>
 </header>
 
-<div class="top-container" style="/*background-image: url('static/{{ image_path }}');*/">
+<div class="top-container" style="background-image: url('static/{{ image_path }}');/*background-color:{{ top_color }}"*/>
   <h1 class="top-container-text">{% block top_text %}{% endblock %}</h1>
 </div>
 
@@ -134,42 +135,50 @@
   <div id="all_news"><a href="/news">Новости &#62;</a></div>
   <div><a href="1.html">Новость 1</a></div>
   <div><a href="2.html">Новость 2</a></div>
-  <div><a href="1.html">Новость 1</a></div>
+  <div><a href="1.html">Новость 3</a></div>
   
 </div>
 <div class="content">
-  <div>
-    {% block content_text %}
-    {% endblock %}
-  </div>
-  <div class="data">{% block data %}{% endblock %}
-  </div>
-  <div class="plots">
-    <h2>Численность постоянного населения</h2>
-    <div id = "plot_population"></div>
-    {% block plots %}
-    {% endblock %}
-  </div>
-  <script>
-    {% block plots_script %}
-    {% endblock %}
 
-    // Get the JSON data from Flask and parse it
-    var graphJSON_population = {{ graphJSON_population|safe }};
+  <div class="cblock_1">
+    {% block content_text_1 %}
+    {% endblock %}
+    <div class="data">{% block data %}{% endblock %}
+    </div>
+    <div class="plots">
+      <h2>Численность постоянного населения</h2>
+      <div id = "plot_population"></div>
+      {% block plots_1 %}
+      {% endblock %}
+    </div>
+  </div>
 
-    // Use Plotly to create the plot
-    Plotly.newPlot('plot_population', graphJSON_population, {});
-  </script>
+  <div class="cblock_2">
+    <!--{% block content_text_2 %}
+    {% endblock %}-->
+    <div class="data">
+    </div>
+    <div class="plots">
+      
+    </div>
+  </div>
+
 </div>
 
+<script>
+  {% block plots_script %}
+  {% endblock %}
 
+  // Get the JSON data from Flask and parse it
+  var graphJSON_population = {{ graphJSON_population|safe }};
+
+  // Use Plotly to create the plot
+  Plotly.newPlot('plot_population', graphJSON_population, {});
+</script>
 
 <div class="footer">
 	&#169; 2023 Носиров Асилхужа
 </div>
-
-<script src="{{ url_for('static', filename='scripts.js') }}">
-</script>
 
 </body>
 </html>

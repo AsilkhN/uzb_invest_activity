@@ -1,0 +1,22 @@
+{% extends "template_without_map.html" %}
+{% block top_text %}Регионы{% endblock %}
+{% block content %}
+<style>
+    ol{
+        font-size:160%;
+    }
+    a{
+        text-decoration: none;
+        color:#faf3d2;
+    }
+      
+    a:hover{
+        color:#709845;
+    }
+</style>
+<ol>
+{% for i in range(14) %}
+<li><a href="{{ i }}"> {{ regions[i]   }}</a></li>
+{% endfor %}
+</ol>
+{% endblock %}

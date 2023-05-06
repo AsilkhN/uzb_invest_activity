@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import plot_creator_reg as plcr
 import plot_creator_uzb as plc_uzb
-from map_color import gradient, min_val, max_val
+from map_color import gradient, min_val, max_val #top_color_change
 from map_color import df as map_df
 import sqlite3
 import os
@@ -22,10 +22,11 @@ reg_colors = gradient(min_val, max_val, map_df['Инвестиционная а�
 def home():
     graphJSON_population = plcr.population_bar(13)
     graphJSON_GDP = plc_uzb.gdp_graph()
-    return render_template('index.html', image_path = "images/background_.jpg",
+    return render_template('index.html', image_path = "images/background_u.jpg",
                             graphJSON_population = graphJSON_population, 
                             graphJSON_GDP = graphJSON_GDP, reg_colors = reg_colors,
                             min_val = floor(min_val), max_val=ceil(max_val))
+                            #,top_color = top_color_change())
 
 # Define a view function that handles requests to URLs with a `region` parameter
 @app.route("/<region>")
@@ -54,20 +55,30 @@ def region(region):
     except:
         text_r_arr = 'нет текста'
 
-    return render_template('regions.html',population = population, gdp = gdp, 
+    
+    image_path = "images/background_"+region+".jpg"
+    
+
+    return render_template('region.html',population = population, gdp = gdp, 
                            region = region, by_id_region = by_id_region, 
-                           image_path = "images/background_"+region+".jpg", 
+                           image_path = image_path, 
                            text_arr = text_r_arr,graphJSON_population = graphJSON_population, 
                            graphJSON_GDP = graphJSON_GDP, reg_colors = reg_colors,
-                           min_val = floor(min_val), max_val=ceil(max_val))
+                           min_val = floor(min_val), max_val=ceil(max_val),)
+                           #top_color = top_color_change())
 
 @app.route("/regions")
 def regions_show():
-    return "Здесь будет список регионов"
+    regions = plcr.df['Регионы']
+    return render_template('regions_list.html', regions = regions,)#top_color = top_color_change())
 
 @app.route("/news")
 def news():
-    return "Здесь должны быть новости"
+    return render_template('news.html', )#top_color = top_color_change())
+
+@app.errorhandler(Exception)
+def error_handler(error):
+    return render_template('error.html', error_code=error.code), error.code
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))

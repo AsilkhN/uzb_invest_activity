@@ -1,6 +1,6 @@
-import numpy as np
 import matplotlib.pyplot as plt
-
+from random import random
+from math import floor
 import pandas as pd
 
 df = pd.read_excel('invest_reg.xlsx', sheet_name='Показатели', engine='openpyxl')
@@ -21,3 +21,11 @@ def gradient(min_val, max_val, activity):
     
     return hex_colors
 
+# def top_color_change():
+#     color1 = floor(random() * 256)
+#     color2 = floor(random() * 256)
+#     color3 = floor(random() * 256)
+
+#     rgb = 'rgb('+str(color1)+","+str(color2)+","+str(color3)+")"
+
+#     return rgb
