@@ -126,9 +126,9 @@ def show_news(news_id):
 
 
 
-# @app.errorhandler(Exception)
-# def error_handler(error):
-#     return render_template('error.html', error_code=error.code), error.code
+@app.errorhandler(Exception)
+def error_handler(error):
+    return render_template('error.html', error_code=error.code), error.code
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
