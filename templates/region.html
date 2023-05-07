@@ -29,11 +29,32 @@
 {% block plots_1 %}
 <h2>ВРП, млрд.сум.</h2>
 <div id = "plot_gdp"></div>
+
+<h2>Темпы роста инвестиций в основной капитал</h2>
+<div id = "plot_temp"></div>
+
+<h2>Доля инвестиций в ВРП и Доля иностранных инвестиций в ВРП</h2>
+<div id = "plot_ish" style="height:500px;"></div>
+
+<h2>Доля региона по освоеннию инвестиций в республике</h2>
+<div id = "plot_dev"></div>
+
+<h2>Инвестиции на душу населения (млн.сум)</h2>
+<div id = "plot_ipc" style="height:500px;"></div>
+
 {% endblock %}
 
 {% block plots_script %}
 var graphJSON_GDP = {{ graphJSON_GDP|safe }}
+var graphJSON_temp = {{ graphJSON_temp|safe }}
+var graphJSON_ish = {{ graphJSON_ish|safe }}
+var graphJSON_dev = {{ graphJSON_dev|safe }}
+var graphJSON_ipc = {{ graphJSON_ipc|safe }}
+
 
 Plotly.newPlot('plot_gdp', graphJSON_GDP, {});
+Plotly.newPlot('plot_temp', graphJSON_temp, {});
+Plotly.newPlot('plot_ish', graphJSON_ish, {});
+Plotly.newPlot('plot_dev', graphJSON_dev, {});
+Plotly.newPlot('plot_ipc', graphJSON_ipc, {});
 {% endblock %}
-

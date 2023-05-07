@@ -1,0 +1,22 @@
+{% extends "template_without_map.html" %}
+{% block top_text %}Новости{% endblock %}
+{% block content %}
+<style>
+    a {
+        font-size: 18px;
+        color: #faf3d2;
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+      }
+      
+    a:hover {
+        color: #709845;
+        text-decoration: none;
+      }
+</style>
+<ul style="font-size:20px">
+{% for i in range(3)%}
+  <li><a href="/news/{{ i }}" style="decoration:none">{{ news_title[i][0] }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

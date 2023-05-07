@@ -33,11 +33,11 @@
 
 <div id="news">
   <div id="all_news"><a href="/news">Новости &#62;</a></div>
-  <div><a href="1.html">Новость 1</a></div>
-  <div><a href="2.html">Новость 2</a></div>
-  <div><a href="1.html">Новость 3</a></div>
-  
+  {% for i in range(3)%}
+  <div><a href="/news/{{ i }}">{{ news_title[i][0] }}</a></div>
+  {% endfor %}
 </div>
+
 <div class="content">
 {% block content %}
 {% endblock %}

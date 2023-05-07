@@ -3,23 +3,30 @@ from random import random
 from math import floor
 import pandas as pd
 
+# Read excel file using pandas
 df = pd.read_excel('invest_reg.xlsx', sheet_name='Показатели', engine='openpyxl')
 
-# Получение минимального и максимального значения инвестиционной активности
+# Get the minimum and maximum investment activity values
 min_val = df['Инвестиционная активность'].min()
 max_val = df['Инвестиционная активность'].max()
 
 
 
 def gradient(min_val, max_val, activity):
-    # Преобразование значений инвестиционной активности в диапазон от 0 до 1
+    """
+    Convert investment activity values into a range from 0 to 1.
+    Create a color gradient from yellow to red based on investment activity.
+    """
+    
+    # Convert investment activity values into a range from 0 to 1.
     normalized_activity = (activity - min_val) / (max_val - min_val)
     
-    # Создание градиента цветов от желтого к красному
+    # Create a color gradient from yellow to red based on investment activity.
     colors = plt.cm.Greens(normalized_activity)
     hex_colors = ['#%02x%02x%02x' % (int(color[0]*255), int(color[1]*255), int(color[2]*255)) for color in colors]
-    
+
     return hex_colors
+
 
 # def top_color_change():
 #     color1 = floor(random() * 256)

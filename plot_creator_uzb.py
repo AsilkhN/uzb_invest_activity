@@ -20,32 +20,3 @@ def gdp_graph():
 
     return graphJSON
 
-# # Define the color for the bar you want to highlight
-# def population_bar(region):
-#     colors = ['#8c91c5'] * len(df)
-#     colors[int(region)] = '#709845'
-
-#     # Create the Plotly bar chart
-#     trace = go.Bar(
-#         x=df['Численность постоянного населения (тысяч чел)'],
-#         y=df['Регионы'],
-#         orientation='h',
-#         text=df['Численность постоянного населения (тысяч чел)'],
-#         textposition='auto',
-#         marker=dict(color=colors),
-#     )
-
-#     layout = go.Layout(
-#         title='Численность постоянного населения по регионам',
-#         xaxis=dict(title='Численность постоянного населения (тысяч чел)'),
-#         yaxis=dict(title='Регионы')
-#     )
-#     fig = go.Figure(data=[trace], layout=layout)
-
-#     # Convert plot to JSON format
-#     graphJSON = fig.to_json()
-
-#     return graphJSON
-
- # # Pass JSON to HTML template
-# return render_template('plot.html', graphJSON=graphJSON)

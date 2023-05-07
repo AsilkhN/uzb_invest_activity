@@ -25,10 +25,43 @@
 {% block plots_1 %}
 <h2>ВВП, млрд.сум.</h2>
 <div id = "plot_gdp"></div>
+
+<h2>Классификация регионов по уровню инвестиционной активности</h2>
 {% endblock %}
 
 {% block plots_script %}
 var graphJSON_GDP = {{ graphJSON_GDP|safe }}
 
 Plotly.newPlot('plot_gdp', graphJSON_GDP, {});
+{% endblock %}
+
+{% block table_classification %}
+
+<table>
+  <tr>
+    <th>Регионы с высоким уровнем инвестиционной активности</th>
+    <th>Регионы со средним уровнем инвестиционной активности</th>
+    <th>Регионы с низким уровнем инвестиционной активности</th>
+  </tr>
+  {% set high = [] %}
+  {% set mid = [] %}
+  {% set low = [] %}
+  {% for region, level in reg_classify.items() %}
+    {% if level == 'HIGH' %}
+      {% set _ = high.append(region) %}
+    {% elif level == 'MID' %}
+      {% set _ = mid.append(region) %}
+    {% elif level == 'LOW' %}
+      {% set _ = low.append(region) %}
+    {% endif %}
+  {% endfor %}
+  {% for i in range((high|length, mid|length, low|length)|max) %}
+    <tr>
+      <td>{{ high[i] if i < high|length else '' }}</td>
+      <td>{{ mid[i] if i < mid|length else '' }}</td>
+      <td>{{ low[i] if i < low|length else '' }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
 {% endblock %}

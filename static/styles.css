@@ -205,6 +205,31 @@ nav a:hover {
   color: #2B3467;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 2% auto;
+  background-color: #ddd;
+  font-size: 15px;
+}
+
+th, td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+th {
+  background-color: #ddd;
+}
+
+@media only screen and (max-width: 600px) {
+  th, td {
+    font-size: 14px;
+  }
+}
+
 
 /* Media query for smaller screens */
 @media screen and (max-width: 768px) {
